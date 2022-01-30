@@ -1,0 +1,17 @@
+{
+  "name": "train-pusher",
+  "version": "0.1.0",
+  "description": "Pushing Duplo Trains",
+  "author": "Vi",
+  "main": "src/main.js",
+  "scripts": {
+    "dev": "node src/main.js",
+    "list": "node src/listdevices.js"
+  },
+  "dependencies": {
+    "node-poweredup": "~8.0.5"
+  },
+  "engines": {
+    "node": "~16.13.2"
+  }
+}
