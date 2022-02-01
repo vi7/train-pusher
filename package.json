@@ -6,10 +6,18 @@
   "main": "src/main.js",
   "scripts": {
     "dev": "node src/main.js",
-    "list": "node src/listdevices.js"
+    "list": "node src/listdevices.js",
+    "lint": "eslint --ext .js src"
   },
   "dependencies": {
     "node-poweredup": "~8.0.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0"
   },
   "engines": {
     "node": "~16.13.2"
