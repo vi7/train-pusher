@@ -7,8 +7,6 @@ const PoweredUP = require('node-poweredup')
 
 const app = express()
 const poweredUP = new PoweredUP.PoweredUP()
-poweredUP.scan() // Start scanning for Hubs
-console.log('Scanning for Hubs...')
 
 poweredUP.on('discover', async (hub) => { // Wait to discover a Hub
   console.log(`Discovered: ${hub.name}!`)
@@ -52,6 +50,9 @@ const main = () => {
     const port = server.address().port
     console.log("Serving requests at http://%s:%s", host, port)
   })
+
+  poweredUP.scan() // Start scanning for Hubs
+  console.log('Scanning for Hubs...')
 
   process.on('SIGTERM', () => {
     server.close(() => {
