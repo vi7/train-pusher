@@ -24,7 +24,6 @@ Bat level: 100
 
 
 ```
-======================================                                                                                                                                                          [12/1632]
 ><><><><><> Device number: 0 <><><><><><><
 Connected: true     
 Hub name: Train Base
@@ -35,6 +34,7 @@ Type name: DUPLO_TRAIN_BASE_MOTOR
 Mode: undefined                               
 WeDo2SmartHub: false             
 Virtual port: false                               
+
 ><><><><><> Device number: 1 <><><><><><><        
 Connected: true                                                                                                                                                                                          
 Hub name: Train Base                                                                                                                                                                                     
@@ -45,6 +45,7 @@ Type name: DUPLO_TRAIN_BASE_SPEAKER
 Mode: undefined
 WeDo2SmartHub: false
 Virtual port: false
+
 ><><><><><> Device number: 2 <><><><><><><
 Connected: true
 Hub name: Train Base
@@ -55,6 +56,7 @@ Type name: HUB_LED
 Mode: undefined
 WeDo2SmartHub: false
 Virtual port: false
+
 ><><><><><> Device number: 3 <><><><><><><
 Connected: true
 Hub name: Train Base
@@ -65,6 +67,7 @@ Type name: DUPLO_TRAIN_BASE_COLOR_SENSOR
 Mode: undefined
 WeDo2SmartHub: false
 Virtual port: false
+
 ><><><><><> Device number: 4 <><><><><><><
 Connected: true
 Hub name: Train Base
@@ -75,6 +78,7 @@ Type name: DUPLO_TRAIN_BASE_SPEEDOMETER
 Mode: undefined
 WeDo2SmartHub: false
 Virtual port: false
+
 ><><><><><> Device number: 5 <><><><><><><
 Connected: true
 Hub name: Train Base
