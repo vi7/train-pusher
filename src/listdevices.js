@@ -1,3 +1,5 @@
+'use strict'
+
 const PoweredUP = require('node-poweredup')
 
 const poweredUP = new PoweredUP.PoweredUP()

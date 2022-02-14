@@ -1,14 +1,15 @@
+'use strict'
+
 const listenPort = 8081
+const apiVersion = 1
 
 require('log-timestamp')
 const args = require('minimist')(process.argv.slice(2))
 const express = require('express')
 const PoweredUP = require('node-poweredup')
-const Endpoints = require('./endpoints.js')
 
 const app = express()
 const poweredUP = new PoweredUP.PoweredUP()
-const endpoints = new Endpoints.Endpoints()
 
 let trainMotor = null
 
@@ -51,7 +52,11 @@ const main = () => {
     console.log(key, value)
   })
 
-  endpoints.registerEndpoints(app, trainMotor)
+  app.use(`/api/v${apiVersion}`, require('./controllers/api_v1'));
+
+  app.get('/', function(req, res) {
+    res.send(`Get /api/v${apiVersion} to see API functions`)
+  });
 
   if (!module.parent) {
     const server = app.listen(listenPort, () => {
