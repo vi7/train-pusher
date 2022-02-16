@@ -1,6 +1,6 @@
 'use strict'
 
-const listenPort = 8081
+const listenPort = 8080
 
 require('log-timestamp')
 const args = require('minimist')(process.argv.slice(2))
