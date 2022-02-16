@@ -11,6 +11,7 @@
         "sourceType": "module"
     },
     "rules": {
-      "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }]
+      "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
+      "space-before-function-paren": "off"
     }
 }

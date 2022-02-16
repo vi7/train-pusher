@@ -1,25 +1,27 @@
 'use strict'
 
 const listenPort = 8081
-const apiVersion = 1
 
 require('log-timestamp')
 const args = require('minimist')(process.argv.slice(2))
 const express = require('express')
 const PoweredUP = require('node-poweredup')
+const Controllerv1 = require('./controllers/api_v1')
 
 const app = express()
 const poweredUP = new PoweredUP.PoweredUP()
+const controllerv1 = new Controllerv1.Controllerv1()
 
-let trainMotor = null
 
 poweredUP.on('discover', async (hub) => { // Wait to discover a Hub
   console.log(`Discovered: ${hub.name}`)
 
   if (hub.type === PoweredUP.Consts.HubType.DUPLO_TRAIN_BASE) {
     await hub.connect()
-    trainMotor = await hub.waitForDeviceByType(PoweredUP.Consts.DeviceType.DUPLO_TRAIN_BASE_MOTOR)
+    controllerv1.setHub(hub)
+    const trainMotor = await hub.waitForDeviceByType(PoweredUP.Consts.DeviceType.DUPLO_TRAIN_BASE_MOTOR)
     console.log(`Connected to: ${hub.name}`)
+    controllerv1.setTrainMotor(trainMotor)
   }
 
   hub.on('disconnect', () => {
@@ -44,19 +46,17 @@ poweredUP.on('discover', async (hub) => { // Wait to discover a Hub
 //   }
 // }, 2000)
 
-
-
 const main = () => {
   console.log('App is up with CLI args:')
   Object.entries(args).forEach(([key, value]) => {
     console.log(key, value)
   })
 
-  app.use(`/api/v${apiVersion}`, require('./controllers/api_v1'));
+  app.use('/api/v1', controllerv1.getRouter())
 
-  app.get('/', function(req, res) {
-    res.send(`Get /api/v${apiVersion} to see API functions`)
-  });
+  app.get('/', function (req, res) {
+    res.send('Get /api/v1 to see API functions\n')
+  })
 
   if (!module.parent) {
     const server = app.listen(listenPort, () => {
@@ -68,12 +68,7 @@ const main = () => {
 
   poweredUP.scan() // Start scanning for Hubs
   console.log('Scanning for Hubs...')
-
-  process.on('SIGTERM', () => {
-    server.close(() => {
-      console.log('Process terminated')
-    })
-  })
 }
+
 
 main()
