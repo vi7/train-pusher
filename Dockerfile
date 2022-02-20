@@ -5,8 +5,8 @@ LABEL maintainer="github.com/vi7"
 
 ARG appdir=/app
 
-RUN mkdir $appdir \
-  apk add --no-cache bluez libudev-zero libudev-zero-dev
+RUN mkdir $appdir
+RUN apk add --no-cache bluez libudev-zero libudev-zero-dev
 COPY ["src", ".eslintrc.json", "package*.json", "$appdir/"]
 WORKDIR $appdir
 
