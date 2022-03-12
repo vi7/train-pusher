@@ -6,14 +6,17 @@
   "main": "src/main.js",
   "scripts": {
     "start": "node src/main.js",
-    "list": "node src/listdevices.js",
+    "start-gendoc": "node swagger.js",
+    "list-devices": "node src/listdevices.js",
     "lint": "eslint --ext .js src"
   },
   "dependencies": {
     "express": "~4.17.2",
     "log-timestamp": "^0.3.0",
     "minimist": "~1.2.5",
-    "node-poweredup": "~8.0.5"
+    "node-poweredup": "~8.0.5",
+    "swagger-autogen": "~2.19.0",
+    "swagger-ui-express": "~4.3.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

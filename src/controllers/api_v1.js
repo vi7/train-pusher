@@ -9,13 +9,9 @@ class Controllerv1 {
     this._hub = null
     this._router = express.Router()
 
-    this._router.all('/', (req, res) => {
-      res.send('Hi! API functions list is under construction\n')
-    })
-
     this._router.all('/list/devices', (req, res) => {
       let devCount = 0
-      let devices = []
+      const devices = []
       // this._hub.getDevices().forEach(dev => {
       //   res.send(`><><><><><> Device number: ${devCount} <><><><><><><`)
       //   res.send(`Connected: ${dev.connected}`)
@@ -32,8 +28,8 @@ class Controllerv1 {
 
       this._hub.getDevices().forEach(dev => {
         devices[devCount] = {
-          "connected": dev.connected,
-          "type": dev.type
+          connected: dev.connected,
+          type: dev.type
         }
         devCount++
       })

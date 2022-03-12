@@ -3,6 +3,8 @@
 const listenPort = 8080
 
 require('log-timestamp')
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('../swagger-output.json')
 const args = require('minimist')(process.argv.slice(2))
 const express = require('express')
 const PoweredUP = require('node-poweredup')
@@ -52,17 +54,15 @@ const main = () => {
     console.log(key, value)
   })
 
-  app.use('/api/v1', controllerv1.getRouter())
+  app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
-  app.get('/', function (req, res) {
-    res.send('Get /api/v1 to see API functions\n')
-  })
+  app.use('/api/v1', controllerv1.getRouter())
 
   if (!module.parent) {
     const server = app.listen(listenPort, () => {
       const host = server.address().address
       const port = server.address().port
-      console.log('Serving requests at http://%s:%s', host, port)
+      console.log('Server is running.\nAPI documentation: http://%s:%s/api', host, port)
     })
   }
 
