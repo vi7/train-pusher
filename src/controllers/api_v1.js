@@ -37,7 +37,7 @@ class Controllerv1 {
       res.send(`{"devices": ${devicesStr}}`)
     })
 
-    this._router.post('/forward/:power', (req, res) => {
+    this._router.get('/forward/:power', (req, res) => {
       const power = req.params.power
       if (power >= 1 && power <= 100) {
         res.send(`Moving forward with power: ${power}\n`)
@@ -47,7 +47,7 @@ class Controllerv1 {
       }
     })
 
-    this._router.post('/backward/:power', (req, res) => {
+    this._router.get('/backward/:power', (req, res) => {
       const power = req.params.power
       if (power >= 1 && power <= 100) {
         res.send(`Moving backward with power: ${power}\n`)
@@ -57,12 +57,12 @@ class Controllerv1 {
       }
     })
 
-    this._router.post('/stop', (req, res) => {
+    this._router.get('/stop', (req, res) => {
       res.send('Stop\n')
       this._trainMotor.stop()
     })
 
-    this._router.post('/brake', (req, res) => {
+    this._router.get('/brake', (req, res) => {
       res.send('Braking\n')
       this._trainMotor.brake()
     })
