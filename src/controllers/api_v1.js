@@ -1,11 +1,14 @@
 'use strict'
 
 const express = require('express')
+const PoweredUP = require('node-poweredup');
 
 
 class Controllerv1 {
   constructor() {
     this._trainMotor = null
+    this._trainSpeaker = null
+    this._trainLED = null
     this._hub = null
     this._router = express.Router()
 
@@ -48,38 +51,58 @@ class Controllerv1 {
     })
 
     this._router.get('/backward/:power', (req, res) => {
-      const power = req.params.power
+      const power = req.params.power;
       if (power >= 1 && power <= 100) {
-        res.send(`Moving backward with power: ${power}\n`)
-        this._trainMotor.setPower(-power)
+        res.send(`Moving backward with power: ${power}\n`);
+        this._trainMotor.setPower(-power);
       } else {
-        res.status(500).send(`Set power level from 1 to 100 as "${req.baseUrl}/backward/<level>"\n`)
+        res.status(500).send(`Set power level from 1 to 100 as "${req.baseUrl}/backward/<level>"\n`);
       }
-    })
+    });
 
     this._router.get('/stop', (req, res) => {
-      res.send('Stop\n')
-      this._trainMotor.stop()
-    })
+      res.send('Stop\n');
+      this._trainMotor.stop();
+    });
 
     this._router.get('/brake', (req, res) => {
-      res.send('Braking\n')
-      this._trainMotor.brake()
-    })
-  }
+      res.send('Braking\n');
+      this._trainMotor.brake();
+    });
+
+    this._router.get('/sound/:sound', (req, res) => {
+      const sound = req.params.sound;
+      res.send(`Woo Woo! Sound: ${sound}\n`);
+      this._trainSpeaker.playSound(sound);
+    });
+
+    this._router.get('/led/:color', (req, res) => {
+      const color = req.params.color;
+      res.send(`LED ON with color: ${color}\n`);
+      this._trainLED.setColor(color);
+    });
+  };
 
   setTrainMotor(trainMotor) {
-    this._trainMotor = trainMotor
-  }
+    this._trainMotor = trainMotor;
+  };
+
+  setTrainSpeaker(trainSpeaker) {
+    this._trainSpeaker = trainSpeaker;
+  };
+
+  setTrainLED(trainLED) {
+    this._trainLED = trainLED;
+  };
 
   setHub(hub) {
-    this._hub = hub
-  }
+    this._hub = hub;
+  };
 
   getRouter() {
-    return this._router
-  }
-}
+    return this._router;
+  };
+};
 
 
-exports.Controllerv1 = Controllerv1
+exports.Controllerv1 = Controllerv1;
