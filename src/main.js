@@ -1,6 +1,6 @@
 'use strict'
 
-const listenPort = 8080;
+const LISTEN_PORT = 8080;
 
 require('log-timestamp');
 const swaggerUi = require('swagger-ui-express');
@@ -63,7 +63,7 @@ const main = () => {
   app.use('/api/v1', controllerv1.getRouter());
 
   if (!module.parent) {
-    const server = app.listen(listenPort, () => {
+    const server = app.listen(LISTEN_PORT, () => {
       const host = server.address().address;
       const port = server.address().port;
       console.log('Server is running.\nAPI documentation: http://%s:%s/api-docs', host, port);
