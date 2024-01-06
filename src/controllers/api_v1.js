@@ -63,7 +63,7 @@ class Controllerv1 {
       }
     })
 
-    this._router.get('/forward/powerup', (req, res) => {
+    this._router.get('/fwdpowerup', (req, res) => {
       if (this.currentPower >= 0 && this.currentPower <= 50) {
         res.send(`Increasing power by: ${POWER_STEP}\n`);
         this.currentPower += POWER_STEP;
@@ -75,7 +75,7 @@ class Controllerv1 {
       }
     })
 
-    this._router.get('/backward/powerup', (req, res) => {
+    this._router.get('/backpowerup', (req, res) => {
       if (this.currentPower <= 0 && this.currentPower >= -50) {
         res.send(`Decreasing power by: ${POWER_STEP}\n`);
         this.currentPower -= POWER_STEP;
@@ -113,7 +113,7 @@ class Controllerv1 {
       this._trainLED.setColor(color);
     })
 
-    this._router.get('/led/changecolor', (req, res) => {
+    this._router.get('/ledchangecolor', (req, res) => {
       if (this.currentColor > 0 && this.currentColor <= 10) {
         this.currentColor--;
         res.send(`LED ON with color: ${this.currentColor}\n`);

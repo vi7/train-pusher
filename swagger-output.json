@@ -60,7 +60,7 @@
         }
       }
     },
-    "/forward/powerup": {
+    "/fwdpowerup": {
       "get": {
         "description": "",
         "parameters": [],
@@ -71,7 +71,7 @@
         }
       }
     },
-    "/backward/powerup": {
+    "/backpowerup": {
       "get": {
         "description": "",
         "parameters": [],
@@ -140,7 +140,7 @@
         }
       }
     },
-    "/led/changecolor": {
+    "/ledchangecolor": {
       "get": {
         "description": "",
         "parameters": [],
