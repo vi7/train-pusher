@@ -65,26 +65,30 @@ class Controllerv1 {
 
     this._router.get('/fwdpowerup', (req, res) => {
       if (this.currentPower >= 0 && this.currentPower <= 50) {
-        res.send(`Increasing power by: ${POWER_STEP}\n`);
+        // res.send(`Increasing power by: ${POWER_STEP}\n`);
         this.currentPower += POWER_STEP;
-        this._trainMotor.setPower(this.currentPower);
+        // this._trainMotor.setPower(this.currentPower);
       } else {
-        res.send('Stopping\n');
-        this.currentPower = 0;
-        this._trainMotor.setPower(this.currentPower);
+        // res.send('Stopping\n');
+        this.currentPower = POWER_STEP;
+        // this._trainMotor.setPower(this.currentPower);
       }
+      res.send(`Setting power to: ${this.currentPower}\n`);
+      this._trainMotor.setPower(this.currentPower);
     })
 
     this._router.get('/backpowerup', (req, res) => {
       if (this.currentPower <= 0 && this.currentPower >= -50) {
-        res.send(`Decreasing power by: ${POWER_STEP}\n`);
+        // res.send(`Decreasing power by: ${POWER_STEP}\n`);
         this.currentPower -= POWER_STEP;
-        this._trainMotor.setPower(this.currentPower);
+        // this._trainMotor.setPower(this.currentPower);
       } else {
-        res.send('Stopping\n');
-        this.currentPower = 0;
-        this._trainMotor.setPower(this.currentPower);
+        // res.send('Stopping\n');
+        this.currentPower = -POWER_STEP;
+        // this._trainMotor.setPower(this.currentPower);
       }
+      res.send(`Setting power to: ${this.currentPower}\n`);
+      this._trainMotor.setPower(this.currentPower);
     })
 
     this._router.get('/stop', (req, res) => {
