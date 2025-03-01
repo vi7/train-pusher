@@ -10,6 +10,12 @@ npm install
 npm start
 ```
 
+or with Swagger docs autogen:
+
+```bash
+npm run start-gendoc
+```
+
 Docker image
 ------------
 
